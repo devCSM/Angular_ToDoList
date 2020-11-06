@@ -22,6 +22,7 @@ export class TodosComponent implements OnInit {
     this.todoService.getTodos().subscribe(todos => {
       this.todos = todos;
       //console.log('test');
+      // This is just text for git commit testing
     });
     
   }
