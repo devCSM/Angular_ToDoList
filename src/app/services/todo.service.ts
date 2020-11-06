@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from '../models/Todo';
 import { Observable } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
+import { runInThisContext } from 'vm';
 //import { TodoService } from '../services/Todo.service'
 
 const httpOptions = { 
@@ -33,6 +34,12 @@ export class TodoService {
     const url = `${this.todosUrl}/${todo.id}`;
     // remove from server
     return this.http.delete<Todo>(url, httpOptions)
+  }
+
+  // Add Todo
+  addTodo(todo:Todo):Observable<Todo> {
+    return this.http.post<Todo>(this.todosUrl, todo, httpOptions);
+    // .post here is an http post request
   }
 
   // toggleCompleted
